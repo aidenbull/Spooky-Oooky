@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Player : MovableObject
 {
-    public float speed = 0.05f;
+    public float speed = 0.03f;
     public float verticalSpeedModifier = 0.7f;
 
     public int poopCount;
     public int waterCount;
+
+    Animator animator;
 
     int MAX_WATER = 3;
 
@@ -18,6 +20,7 @@ public class Player : MovableObject
         base.Start();
         poopCount = 0;
         waterCount = 0;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,6 +33,28 @@ public class Player : MovableObject
     {
         float xInput = Input.GetAxis("Horizontal");
         float yInput = Input.GetAxis("Vertical");
+
+
+        if (xInput > 0)
+        {
+            //animator.SetTrigger("MoveRight");
+            animator.Play("PlayerRight");
+        }
+        else if(xInput < 0)
+        {
+            //animator.SetTrigger("MoveLeft");
+            animator.Play("PlayerLeft");
+        }
+        else if(yInput > 0)
+        {
+            //animator.SetTrigger("MoveUp");
+            animator.Play("PlayerUp");
+        }
+        else if(yInput < 0)
+        {
+            //animator.SetTrigger("Idle");
+            animator.Play("PlayerIdleAndDown");
+        }
 
         Vector2 movementDirection = new Vector2(xInput, yInput);
         movementDirection = movementDirection.normalized * speed;
@@ -48,7 +73,8 @@ public class Player : MovableObject
         //just here so we can pick up poop when we walk over it
         if (1 << collider.gameObject.layer == LayerMask.GetMask("poop"))
         {
-            poopCount += 1;
+            //poopCount += 1;
+            ResourceManager.IncrementPoop();
             Destroy(collider.gameObject);
         }
     }

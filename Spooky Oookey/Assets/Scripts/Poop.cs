@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Poop : MonoBehaviour
+public class Poop : SpookyObject
 {
     float slideMaxDistance = 1f;
     Vector2 origin;
@@ -30,7 +30,7 @@ public class Poop : MonoBehaviour
     {
         slideTimer -= Time.deltaTime;
 
-        Vector3 slideTarget3D = slideTarget;
+        Vector3 slideTarget3D = new Vector3(slideTarget.x, slideTarget.y, transform.position.z);
         Vector3 targetVector = slideTarget3D - transform.position;
         transform.position += targetVector * 0.1f;
     }

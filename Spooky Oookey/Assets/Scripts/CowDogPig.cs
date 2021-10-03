@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CowDogPig : MonoBehaviour
+public class CowDogPig : SpookyObject
 {
     Animator animator;
     SpriteRenderer spriteRenderer;
@@ -47,7 +47,7 @@ public class CowDogPig : MonoBehaviour
     {
         if (walking)
         {
-            Vector3 targetVector = new Vector3(wanderTarget.x, wanderTarget.y, 0) - transform.position;
+            Vector3 targetVector = new Vector3(wanderTarget.x, wanderTarget.y, transform.position.z) - transform.position;
             Vector3 wanderVector = targetVector.normalized * walkSpeed;
             if (targetVector.magnitude > wanderVector.magnitude) {
                 //Still far from the destination so just continue moving

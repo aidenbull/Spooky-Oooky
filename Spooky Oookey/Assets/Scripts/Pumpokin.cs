@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pumpokin : MonoBehaviour
+public class Pumpokin : SpookyObject
 {
     Animator animator;
 
@@ -21,6 +21,7 @@ public class Pumpokin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        base.Update();
         sleepWakeTimer -= Time.deltaTime;
         if(sleepWakeTimer <= 0f)
         {

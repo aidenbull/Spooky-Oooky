@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovableObject : MonoBehaviour
+public class MovableObject : SpookyObject
 {
     /*
      * Designed for objects that will move and handle collision. Ended up just being the player

@@ -20,14 +20,23 @@ public class MovableObject : MonoBehaviour
         RaycastHit2D collisionHit = Physics2D.BoxCast(transform.position, transform.localScale, transform.rotation.z, direction, direction.magnitude, layerMask);
         if(collisionHit)
         {
-            if(Vector2.Dot(collisionHit.transform.position - transform.position, direction) > 0)
-            {
-                Debug.Log(collisionHit.normal);
-                direction = Vector2.zero;
-            }
+            direction = Project2D(direction, Rotate2D(collisionHit.normal, Mathf.PI / 2));
         }
         //Just for conversion, because I don't know a more elegant way
         Vector3 movement = direction;
         transform.position += movement;
+    }
+
+    Vector2 Rotate2D(Vector2 toRotate, float radianAngle)
+    {
+        float newX = toRotate.x * Mathf.Cos(radianAngle) - toRotate.y * Mathf.Sin(radianAngle);
+        float newY = toRotate.x * Mathf.Sin(radianAngle) + toRotate.y * Mathf.Cos(radianAngle);
+        return new Vector2(newX, newY);
+    }
+
+    Vector2 Project2D(Vector2 a, Vector2 b)
+    {
+        Vector2 projectedVector = (Vector2.Dot(a, b) / Vector2.Dot(b, b)) * b;
+        return projectedVector;
     }
 }

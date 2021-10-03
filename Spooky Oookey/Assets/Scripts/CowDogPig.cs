@@ -21,6 +21,7 @@ public class CowDogPig : SpookyObject
 
     float wanderRadius = 2f;
     float widthToHeightRatio = 1.5f;
+    float pastureRotation = 0f;
     public Vector2 pastureOrigin;
 
     Vector2 wanderTarget;
@@ -34,6 +35,14 @@ public class CowDogPig : SpookyObject
         walkTimer = Random.Range(WALK_CYCLE_MIN, WALK_CYCLE_MAX);
         poopTimer = Random.Range(POOP_CYCLE_MIN, POOP_CYCLE_MAX);
         walking = false;
+    }
+
+    public void Init(float wanderRadius, float widthToHeightRatio, float pastureRotation, Vector2 pastureOrigin)
+    {
+        this.wanderRadius = wanderRadius;
+        this.widthToHeightRatio = widthToHeightRatio;
+        this.pastureRotation = pastureRotation;
+        this.pastureOrigin = pastureOrigin;
     }
 
     // Update is called once per frame

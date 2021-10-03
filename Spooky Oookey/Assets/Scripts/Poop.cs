@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Poop : SpookyObject
 {
-    float slideMaxDistance = 1f;
+    float slideMaxDistance = 0.5f;
     Vector2 origin;
     Vector2 slideTarget;
 
     float slideTimer = 2f;
-    float slideFrameIncrement = 0.1f;
+    float slideFrameIncrement = 0.05f;
 
     // Start is called before the first frame update
     void Start()

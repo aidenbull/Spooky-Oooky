@@ -1,0 +1,12 @@
+-Make pumpkin patch
+	-Make pumpkins grow (at least a grow animation)
+	-Add buttons above pumpkin when its needy
+	-Add animation for watering and feeding
+	-Make pumpkins eat cows (and player)
+-Make pasture (DONE)
+	-Make button to buy cows (DONE)
+		-Make button look interactable
+-Add background
+-Add player interact animation
+-Add water well that automatically fills 
+-Make mouse interact script

@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class MovableObject : MonoBehaviour
 {
+    /*
+     * Designed for objects that will move and handle collision. Ended up just being the player
+     */
+
     //Only going to use box colliders, will probably only use them for static objects
     //Really only doing this because we're going for an isometric view and will need to account for diagonal collisions
     BoxCollider2D boxCollider;
+
+    protected delegate void CollisionCallback(Collider2D collider);
+    //CollisionCallback callback;
 
     // Start is called before the first frame update
     protected void Start()
@@ -14,13 +21,30 @@ public class MovableObject : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    protected void Move(Vector2 direction)
+    //protected void SetCollisionDelegate(CollisionCallback childCallback)
+    //{
+    //    callback = childCallback;
+    //}
+
+    protected void Move(Vector2 direction, int collisionMask = 0, int triggerMask = 0, CollisionCallback callback = null)
     {
-        int layerMask = LayerMask.GetMask("wall");
-        RaycastHit2D collisionHit = Physics2D.BoxCast(transform.position, transform.localScale, transform.rotation.z, direction, direction.magnitude, layerMask);
+        if (collisionMask == 0) collisionMask = LayerMask.GetMask("wall");
+
+        Vector3 colliderOffset = boxCollider.offset;
+        Vector3 colliderSize = boxCollider.size;
+
+        RaycastHit2D collisionHit = Physics2D.BoxCast(transform.position + colliderOffset, colliderSize, transform.rotation.z, direction, direction.magnitude, collisionMask + triggerMask);
         if(collisionHit)
         {
-            direction = Project2D(direction, Rotate2D(collisionHit.normal, Mathf.PI / 2));
+            //Code referenced from https://answers.unity.com/questions/50279/check-if-layer-is-in-layermask.html
+            //Project movement along the colliding surface if the colliding object is in our collision mask
+            if (collisionMask == (collisionMask | (1 << collisionHit.collider.gameObject.layer)))
+            {
+                //Has minor issue when colliding on corner of box unfortunately, happens infrequently enough that im just leaving it
+                direction = Project2D(direction, Rotate2D(collisionHit.normal, Mathf.PI / 2));
+            }
+            //Handle callbacks if they exist
+            if (callback != null) callback(collisionHit.collider);
         }
         //Just for conversion, because I don't know a more elegant way
         Vector3 movement = direction;

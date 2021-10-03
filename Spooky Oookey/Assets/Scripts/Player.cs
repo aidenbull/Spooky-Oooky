@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class Player : MovableObject
 {
-    public float speed = 0.007f;
+    public float speed = 0.05f;
     public float verticalSpeedModifier = 0.7f;
 
+    public int poopCount;
+    public int waterCount;
+
+    int MAX_WATER = 3;
 
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
+        poopCount = 0;
+        waterCount = 0;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         ProcessInput();
     }
@@ -29,8 +35,21 @@ public class Player : MovableObject
         movementDirection = movementDirection.normalized * speed;
         movementDirection.y *= verticalSpeedModifier;
 
-        if (movementDirection.magnitude != 0) Move(movementDirection);
+        if (movementDirection.magnitude != 0)
+        {
+            int collisionMask = LayerMask.GetMask("wall");
+            int poopMask = LayerMask.GetMask("poop");
+            Move(movementDirection, collisionMask, poopMask, HandleCollisions);
+        }
     }
 
-
+    void HandleCollisions(Collider2D collider)
+    {
+        //just here so we can pick up poop when we walk over it
+        if (1 << collider.gameObject.layer == LayerMask.GetMask("poop"))
+        {
+            poopCount += 1;
+            Destroy(collider.gameObject);
+        }
+    }
 }

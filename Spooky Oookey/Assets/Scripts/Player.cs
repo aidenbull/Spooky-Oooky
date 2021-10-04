@@ -14,6 +14,10 @@ public class Player : MovableObject
 
     int MAX_WATER = 3;
 
+    static float interactionTimer = 0f;
+    //Supposed to be equal to the length of the interact animation
+    static float INTERACTION_TIME = 0.5f;
+
     // Start is called before the first frame update
     new void Start()
     {
@@ -21,6 +25,7 @@ public class Player : MovableObject
         poopCount = 0;
         waterCount = 0;
         animator = GetComponent<Animator>();
+        EventManager.OnInteract += StartInteract;
     }
 
     // Update is called once per frame
@@ -31,40 +36,48 @@ public class Player : MovableObject
 
     void ProcessInput()
     {
-        float xInput = Input.GetAxis("Horizontal");
-        float yInput = Input.GetAxis("Vertical");
+        //Can't do anything while interacting
+        if (interactionTimer < 0f)
+        {
+            float xInput = Input.GetAxis("Horizontal");
+            float yInput = Input.GetAxis("Vertical");
 
+            //Using play instead of settrigger here because the animator is set so any animation can play from any animation, therefore animations can interrupt themselves
+            if (xInput > 0)
+            {
+                //animator.SetTrigger("MoveRight");
+                animator.Play("PlayerRight");
+            }
+            else if (xInput < 0)
+            {
+                //animator.SetTrigger("MoveLeft");
+                animator.Play("PlayerLeft");
+            }
+            else if (yInput > 0)
+            {
+                //animator.SetTrigger("MoveUp");
+                animator.Play("PlayerUp");
+            }
+            else if (yInput < 0)
+            {
+                //animator.SetTrigger("Idle");
+                animator.Play("PlayerIdleAndDown");
+            }
 
-        if (xInput > 0)
-        {
-            //animator.SetTrigger("MoveRight");
-            animator.Play("PlayerRight");
-        }
-        else if(xInput < 0)
-        {
-            //animator.SetTrigger("MoveLeft");
-            animator.Play("PlayerLeft");
-        }
-        else if(yInput > 0)
-        {
-            //animator.SetTrigger("MoveUp");
-            animator.Play("PlayerUp");
-        }
-        else if(yInput < 0)
-        {
-            //animator.SetTrigger("Idle");
-            animator.Play("PlayerIdleAndDown");
-        }
+            Vector2 movementDirection = new Vector2(xInput, yInput);
+            movementDirection = movementDirection.normalized * speed;
+            movementDirection.y *= verticalSpeedModifier;
 
-        Vector2 movementDirection = new Vector2(xInput, yInput);
-        movementDirection = movementDirection.normalized * speed;
-        movementDirection.y *= verticalSpeedModifier;
-
-        if (movementDirection.magnitude != 0)
+            if (movementDirection.magnitude != 0)
+            {
+                int collisionMask = LayerMask.GetMask("wall");
+                int poopMask = LayerMask.GetMask("poop");
+                Move(movementDirection, collisionMask, poopMask, HandleCollisions);
+            }
+        }
+        else
         {
-            int collisionMask = LayerMask.GetMask("wall");
-            int poopMask = LayerMask.GetMask("poop");
-            Move(movementDirection, collisionMask, poopMask, HandleCollisions);
+            interactionTimer -= Time.deltaTime;
         }
     }
 
@@ -77,5 +90,11 @@ public class Player : MovableObject
             ResourceManager.IncrementPoop();
             Destroy(collider.gameObject);
         }
+    }
+
+    void StartInteract()
+    {
+        interactionTimer = INTERACTION_TIME;
+        animator.SetTrigger("Interact");
     }
 }

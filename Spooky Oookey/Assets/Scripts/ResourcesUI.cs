@@ -11,13 +11,20 @@ public class ResourcesUI : MonoBehaviour
     public GameObject WaterCounterText;
     Text waterText;
 
+    public GameObject MoneyCounterText;
+    Text moneyText;
+
     // Start is called before the first frame update
     void Start()
     {
         poopText = PoopCounterText.GetComponent<Text>();
         waterText = WaterCounterText.GetComponent<Text>();
+        moneyText = MoneyCounterText.GetComponent<Text>();
         poopText.text = "= 0";
         waterText.text = "= 0/" + ResourceManager.MAX_WATER;
+        moneyText.text = "= " + ResourceManager.MoneyCounter + "b";
+
+        ResourceManager.ResetResources();
     }
 
     // Update is called once per frame
@@ -25,5 +32,6 @@ public class ResourcesUI : MonoBehaviour
     {
         poopText.text = "= " + ResourceManager.PoopCounter;
         waterText.text = "= " + ResourceManager.WaterCounter + "/" + ResourceManager.MAX_WATER;
+        moneyText.text = "= " + ResourceManager.MoneyCounter + "b";
     }
 }

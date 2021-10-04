@@ -7,6 +7,6 @@
 	-Make button to buy cows (DONE)
 		-Make button look interactable
 -Add background
--Add player interact animation
--Add water well that automatically fills 
--Make mouse interact script
+-Add player interact animation (DONE)
+-Add water well that automatically fills (DONE)
+-Make mouse interact script (DONE)

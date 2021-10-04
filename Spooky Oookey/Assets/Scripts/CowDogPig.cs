@@ -76,7 +76,7 @@ public class CowDogPig : SpookyObject
             walkTimer -= Time.deltaTime;
             if (walkTimer <= 0)
             {
-                wanderTarget = GenerateRandomWanderCoordinate();
+                wanderTarget = Pasture.GenerateRandomPastureCoordinate(wanderRadius, widthToHeightRatio, pastureRotation, pastureOrigin);
                 //Turn around if need be
                 if (wanderTarget.x < transform.position.x)
                 {
@@ -92,15 +92,17 @@ public class CowDogPig : SpookyObject
         }
     }
 
-    Vector2 GenerateRandomWanderCoordinate()
-    {
-        float angle = Random.Range(0, 2*Mathf.PI);
-        float radius = Random.Range(0, wanderRadius);
-        float x = radius * Mathf.Cos(angle) * widthToHeightRatio;
-        float y = radius * Mathf.Sin(angle);
+    //Vector2 GenerateRandomPastureCoordinate()
+    //{
+    //    float angle = Random.Range(0, 2*Mathf.PI);
+    //    float radius = Random.Range(0, wanderRadius);
+    //    float x = radius * Mathf.Cos(angle) * widthToHeightRatio;
+    //    float y = radius * Mathf.Sin(angle);
 
-        return pastureOrigin + new Vector2(x, y);
-    }
+    //    Vector2 RotatedCoordinate = Utilities.Rotate2D(new Vector2(x, y), pastureRotation);
+
+    //    return pastureOrigin + RotatedCoordinate;
+    //}
 
     void HandlePooping()
     {

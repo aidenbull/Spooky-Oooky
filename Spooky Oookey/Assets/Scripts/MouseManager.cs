@@ -34,7 +34,7 @@ public class MouseManager : MonoBehaviour
             ClickableObject clickable = hit.collider.gameObject.GetComponent<ClickableObject>();
             if (clickable)
             {
-                clickable.OnClick();
+                //clickable.OnClick();
                 Debug.Log("Clicked an object!");
             }
         }

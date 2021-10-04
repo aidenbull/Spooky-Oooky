@@ -4,10 +4,28 @@ using UnityEngine;
 
 public abstract class ClickableObject : MonoBehaviour
 {
-    public virtual void OnClick() { }
+    public virtual void OnMouseD() { }
+    public virtual void OnMouseU() { }
+    public virtual void OnMouseIn() { }
+    public virtual void OnMouseOut() { }
 
     private void OnMouseDown()
     {
-        OnClick();
+        OnMouseD();
+    }
+
+    private void OnMouseUp()
+    {
+        OnMouseU();
+    }
+
+    private void OnMouseEnter()
+    {
+        OnMouseIn();   
+    }
+
+    private void OnMouseExit()
+    {
+        OnMouseOut();
     }
 }

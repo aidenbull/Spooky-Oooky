@@ -139,6 +139,8 @@ public class Pumpokin : SpookyObject
         {
             ResetFood();
             EventManager.TriggerInteract();
+            GameObject poop = Instantiate(poopEffect);
+            poop.transform.position = transform.position + new Vector3(0f, 0f, -1f);
         }
         else
         {

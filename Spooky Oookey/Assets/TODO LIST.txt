@@ -1,5 +1,3 @@
 
--Add animation for pumpkin poop feeding
--Add background
 -Test? (balance and bugs)
 -Begin testing builds no later than 12pm

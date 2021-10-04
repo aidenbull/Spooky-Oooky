@@ -484,7 +484,7 @@ MonoBehaviour:
   FoodButton: {fileID: 258479169309423618}
   WaterButton: {fileID: 1271561070522267507}
   rainEffect: {fileID: 34864155758499787, guid: 3d42e0f1bd3bb0b46ade3379bb643b06, type: 3}
-  poopEffect: {fileID: 0}
+  poopEffect: {fileID: 5905595300973641663, guid: 2ede04ceac0d8dd4e8312c6866a46ee5, type: 3}
   EatEffect: {fileID: 1363334903262615735}
   PoofEffect: {fileID: 3897644263459564117, guid: 51af15cc306c794439fc69737b3c6a48, type: 3}
   Bone: {fileID: 4141383862141377976, guid: 7c01e6880f172534e82923344821351b, type: 3}

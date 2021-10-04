@@ -74,12 +74,12 @@ public class ResourceManager
         CowDogPigCounter += 1;
     }
 
-    public static bool RemoveCowDogPig()
+    public static bool RemoveCowDogPig(GameObject pumpkinEffect)
     {
         if (CowDogPigCounter > 0)
         {
             CowDogPigCounter -= 1;
-            EventManager.TriggerCowEaten();
+            EventManager.TriggerCowEaten(pumpkinEffect);
             return true;
         }
         return false;

@@ -37,6 +37,11 @@ public class Pumpokin : SpookyObject
     public GameObject rainEffect;
     public GameObject poopEffect;
 
+    AudioSource growlAudio;
+
+    public GameObject EatEffect;
+    PumpkinEatEffect eatEffect;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -49,6 +54,12 @@ public class Pumpokin : SpookyObject
         waterButton = WaterButton.GetComponent<PumpkinButton>();
         foodButton.Init(TryFeedPumpkin);
         waterButton.Init(TryWaterPumpkin);
+
+        growlAudio = GetComponent<AudioSource>();
+
+        eatEffect = EatEffect.GetComponent<PumpkinEatEffect>();
+        eatEffect.Init(AttackAnimCallback);
+        EatEffect.SetActive(false);
     }
 
     new void Update()
@@ -135,6 +146,8 @@ public class Pumpokin : SpookyObject
         }
     }
 
+    //intended to be used when the pumpkin wakes up
+    bool playedGrowl = false;
     //Running into a bit of redundant name syndrome
     void UpdateAwakeState()
     {
@@ -143,10 +156,16 @@ public class Pumpokin : SpookyObject
         if (needsFood || needsWater)
         {
             animator.SetBool("Awake", true);
+            if (!playedGrowl)
+            {
+                growlAudio.Play();
+                playedGrowl = true;
+            }
         }
         else
         {
             animator.SetBool("Awake", false);
+            playedGrowl = false;
         }
         SetFoodActive(needsFood);
         SetWaterActive(needsWater);
@@ -164,22 +183,27 @@ public class Pumpokin : SpookyObject
     void Attack()
     {
         animator.SetTrigger("Attack");
+
         waitingOnAttackAnim = true;
-        if (ResourceManager.RemoveCowDogPig())
+
+        if (ResourceManager.RemoveCowDogPig(EatEffect))
         {
             ResetFood();
             ResetWater();
+            EatEffect.SetActive(true);
+            eatEffect.Eat();
         }
         else
         {
             //Game Over!
-            Scene scene = SceneManager.GetActiveScene(); 
-            SceneManager.LoadScene(scene.name);
+            EventManager.TriggerGameOver();
         }
     }
 
     void AttackAnimCallback()
     {
+        animator.SetTrigger("AttackReturn");
+        EatEffect.SetActive(false);
         waitingOnAttackAnim = false;
     }
 

@@ -13,6 +13,7 @@ public class EventManager : MonoBehaviour
         OnRefillWater = null;
         OnCowEaten = null;
         OnPumpkinGrows = null;
+        OnGameOver = null;
     }
 
 
@@ -58,11 +59,11 @@ public class EventManager : MonoBehaviour
 
     //This one may be backward but right now the resourceManager keeps track of number of cows and alerts the pasture when one is eaten
     //When a cow gets eaten
-    public delegate void CowEatenEvent();
+    public delegate void CowEatenEvent(GameObject eatEffect);
     public static event CowEatenEvent OnCowEaten;
-    public static void TriggerCowEaten()
+    public static void TriggerCowEaten(GameObject eatEffect)
     {
-        if (OnCowEaten != null) OnCowEaten();
+        if (OnCowEaten != null) OnCowEaten(eatEffect);
     }
 
     //When a pumpkin grows up
@@ -71,5 +72,12 @@ public class EventManager : MonoBehaviour
     public static void TriggerPumpkinGrows()
     {
         if (OnPumpkinGrows != null) OnPumpkinGrows();
+    }
+
+    public delegate void GameOverEvent();
+    public static event GameOverEvent OnGameOver;
+    public static void TriggerGameOver()
+    {
+        if (OnGameOver != null) OnGameOver();
     }
 }

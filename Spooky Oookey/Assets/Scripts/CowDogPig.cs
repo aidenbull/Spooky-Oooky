@@ -48,8 +48,15 @@ public class CowDogPig : SpookyObject
     // Update is called once per frame
     void FixedUpdate()
     {
-        HandleWandering();
-        HandlePooping();
+        if (!gettingEaten)
+        {
+            HandleWandering();
+            HandlePooping();
+        }
+        else
+        {
+            HandleEatUpdate();
+        }
     }
 
     void HandleWandering()
@@ -114,8 +121,21 @@ public class CowDogPig : SpookyObject
         }
     }
 
-    public void GetEaten()
+    public float eatTime = 2.33f;
+    bool gettingEaten = false;
+    public void GetEaten(GameObject eatEffect)
     {
-        Destroy(this.gameObject);
+        gettingEaten = true;
+        eatEffect.transform.position = transform.position + new Vector3(0f, 0.1f, 1f);
+        animator.SetTrigger("Eaten");
+    }
+
+    void HandleEatUpdate()
+    {
+        eatTime -= Time.deltaTime;
+        if (eatTime < 0f)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

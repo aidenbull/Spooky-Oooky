@@ -27,6 +27,9 @@ public class MusicManager : MonoBehaviour
         calm = calmMusic.GetComponent<AudioSource>();
         intense = intenseMusic.GetComponent<AudioSource>();
 
+        calm.Play();
+        intense.Play();
+
         UpdateAudioCrossfade();
     }
 

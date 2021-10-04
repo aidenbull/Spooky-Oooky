@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MovableObject
 {
@@ -16,6 +17,9 @@ public class Player : MovableObject
     //Supposed to be equal to the length of the interact animation
     static float INTERACTION_TIME = 0.5f;
 
+    public GameObject DeathEffect;
+    PumpkinEatEffect deathEffect;
+
     // Start is called before the first frame update
     new void Start()
     {
@@ -23,13 +27,26 @@ public class Player : MovableObject
         poopCount = 0;
         waterCount = 0;
         animator = GetComponent<Animator>();
+
+        deathEffect = DeathEffect.GetComponent<PumpkinEatEffect>();
+        deathEffect.Init(GameOver);
+        DeathEffect.SetActive(false);
+
         EventManager.OnInteract += StartInteract;
+        EventManager.OnGameOver += OnGameOver;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        ProcessInput();
+        if (!dead)
+        {
+            ProcessInput();
+        }
+        else
+        {
+            PlayDeathEffect();
+        }
     }
 
     void ProcessInput()
@@ -94,5 +111,29 @@ public class Player : MovableObject
     {
         interactionTimer = INTERACTION_TIME;
         animator.SetTrigger("Interact");
+    }
+
+    void OnGameOver()
+    {
+        dead = true;
+        DeathEffect.SetActive(true);
+        deathEffect.Eat();
+    }
+
+    bool dead = false;
+    float eatTime = 2.33f;
+    void PlayDeathEffect()
+    {
+        eatTime -= Time.deltaTime;
+        if (eatTime < 0f)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
+
+    void GameOver()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 }

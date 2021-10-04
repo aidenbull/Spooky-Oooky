@@ -66,10 +66,10 @@ public class Pasture : MonoBehaviour
         return pastureOrigin + RotatedCoordinate;
     }
 
-    void EatCow()
+    void EatCow(GameObject eatEffect)
     {
         CowDogPig toEat = cdpList[0];
         cdpList.RemoveAt(0);
-        toEat.GetEaten();
+        toEat.GetEaten(eatEffect);
     }
 }

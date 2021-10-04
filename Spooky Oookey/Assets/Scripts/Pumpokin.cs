@@ -9,15 +9,15 @@ public class Pumpokin : SpookyObject
 
     // Start is called before the first frame update
 
-    public float growUpTimer = 10f;
+    public float growUpTimer;
 
     public enum GrowthState { Small, Large }
     GrowthState currGrowth;
 
-    float AWAKE_TIMER_THRESHOLD = 10f;
+    float AWAKE_TIMER_THRESHOLD = 40f;
 
-    float MIN_RESOURCE_RESET = 20f;
-    float MAX_RESOURCE_RESET = 30f;
+    float MIN_RESOURCE_RESET = 50f;
+    float MAX_RESOURCE_RESET = 90f;
 
     float waterTimer;
     float foodTimer;
@@ -42,6 +42,13 @@ public class Pumpokin : SpookyObject
     public GameObject EatEffect;
     PumpkinEatEffect eatEffect;
 
+    public GameObject PoofEffect;
+
+    public GameObject Bone;
+    float boneTimer;
+    float BONE_CYCLE_TIME_MIN = 15f;
+    float BONE_CYCLE_TIME_MAX = 25f;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -60,6 +67,8 @@ public class Pumpokin : SpookyObject
         eatEffect = EatEffect.GetComponent<PumpkinEatEffect>();
         eatEffect.Init(AttackAnimCallback);
         EatEffect.SetActive(false);
+
+        boneTimer = Random.Range(BONE_CYCLE_TIME_MIN, BONE_CYCLE_TIME_MAX);
     }
 
     new void Update()
@@ -93,6 +102,8 @@ public class Pumpokin : SpookyObject
         animator.SetTrigger("GrowUp");
         ResetWater();
         ResetFood();
+
+        Instantiate(PoofEffect, transform.position + new Vector3(0f, 0.2f, -1f), transform.rotation);
 
         EventManager.TriggerPumpkinGrows();
     }
@@ -143,6 +154,7 @@ public class Pumpokin : SpookyObject
             foodTimer -= Time.deltaTime;
             UpdateAwakeState();
             CheckAttack();
+            UpdateBoneDrops();
         }
     }
 
@@ -185,6 +197,9 @@ public class Pumpokin : SpookyObject
         animator.SetTrigger("Attack");
 
         waitingOnAttackAnim = true;
+
+        SetFoodActive(false);
+        SetWaterActive(false);
 
         if (ResourceManager.RemoveCowDogPig(EatEffect))
         {
@@ -229,6 +244,18 @@ public class Pumpokin : SpookyObject
     void SetWaterActive(bool active)
     {
         waterButton.SetActive(active);
+    }
+
+
+    //Just some functions to drop a bone every once in a while
+    void UpdateBoneDrops()
+    {
+        boneTimer -= Time.deltaTime;
+        if(boneTimer < 0f)
+        {
+            boneTimer = Random.Range(BONE_CYCLE_TIME_MIN, BONE_CYCLE_TIME_MAX);
+            Instantiate(Bone, transform.position, transform.rotation);
+        }
     }
 
     private void PumpkinTriggerEnter(Collider2D collider)

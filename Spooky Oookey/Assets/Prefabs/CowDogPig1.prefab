@@ -117,3 +117,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poop: {fileID: 4324078487781617113, guid: 4b2ad93ce18419d45a75413736f83654, type: 3}
   pastureOrigin: {x: 0, y: 0}
+  PoofEffect: {fileID: 3897644263459564117, guid: 51af15cc306c794439fc69737b3c6a48, type: 3}
+  eatTime: 2.33

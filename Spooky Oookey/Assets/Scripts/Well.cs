@@ -15,7 +15,6 @@ public class Well : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("SOMETHING IN MY TRIGGER!");
         if (collision.CompareTag("Player"))
         {
             ResourceManager.RefillWater();

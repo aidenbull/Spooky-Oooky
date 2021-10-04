@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 258479169309423618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.175, y: 0.671, z: -1}
-  m_LocalScale: {x: 1, y: 1.4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7313088263885708017}
   m_RootOrder: 2
@@ -486,6 +486,8 @@ MonoBehaviour:
   rainEffect: {fileID: 34864155758499787, guid: 3d42e0f1bd3bb0b46ade3379bb643b06, type: 3}
   poopEffect: {fileID: 0}
   EatEffect: {fileID: 1363334903262615735}
+  PoofEffect: {fileID: 3897644263459564117, guid: 51af15cc306c794439fc69737b3c6a48, type: 3}
+  Bone: {fileID: 4141383862141377976, guid: 7c01e6880f172534e82923344821351b, type: 3}
 --- !u!82 &4631057935783577469
 AudioSource:
   m_ObjectHideFlags: 0

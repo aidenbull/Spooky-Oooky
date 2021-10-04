@@ -20,6 +20,10 @@ public class Player : MovableObject
     public GameObject DeathEffect;
     PumpkinEatEffect deathEffect;
 
+    public GameObject PoofEffect;
+
+    public int BoneValue = 50;
+
     // Start is called before the first frame update
     new void Start()
     {
@@ -87,7 +91,9 @@ public class Player : MovableObject
             {
                 int collisionMask = LayerMask.GetMask("wall");
                 int poopMask = LayerMask.GetMask("poop");
-                Move(movementDirection, collisionMask, poopMask, HandleCollisions);
+                int boneMask = LayerMask.GetMask("bone");
+                int miscMask = poopMask + boneMask;
+                Move(movementDirection, collisionMask, miscMask, HandleCollisions);
             }
         }
         else
@@ -105,6 +111,12 @@ public class Player : MovableObject
             ResourceManager.IncrementPoop();
             Destroy(collider.gameObject);
         }
+        //BONELESS CHICKEN
+        if (1 << collider.gameObject.layer == LayerMask.GetMask("bone"))
+        {
+            ResourceManager.AddMoney(BoneValue);
+            Destroy(collider.gameObject);
+        }
     }
 
     void StartInteract()
@@ -115,19 +127,30 @@ public class Player : MovableObject
 
     void OnGameOver()
     {
-        dead = true;
-        DeathEffect.SetActive(true);
-        deathEffect.Eat();
+        if (!dead)
+        {
+            dead = true;
+            DeathEffect.SetActive(true);
+            deathEffect.Eat();
+            animator.SetTrigger("Die");
+        }
     }
 
     bool dead = false;
     float eatTime = 2.33f;
+    bool poofed = false;
     void PlayDeathEffect()
     {
         eatTime -= Time.deltaTime;
         if (eatTime < 0f)
         {
             GetComponent<SpriteRenderer>().enabled = false;
+            if (!poofed)
+            {
+                poofed = true;
+                GameObject poofInstance = Instantiate(PoofEffect);
+                poofInstance.transform.position = transform.position + new Vector3(0f, 0.2f, -1f);
+            }
         }
     }
 

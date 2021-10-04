@@ -13,7 +13,7 @@ public class PumpkinEatEffect : MonoBehaviour
 
     Animator animator;
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
     }
@@ -32,8 +32,8 @@ public class PumpkinEatEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EffectDuration -= Time.deltaTime;
-        if (EffectDuration < 0f)
+        effectTimer -= Time.deltaTime;
+        if (effectTimer < 0f)
         {
             callback();
         }

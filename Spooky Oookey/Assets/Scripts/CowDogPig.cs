@@ -10,8 +10,8 @@ public class CowDogPig : SpookyObject
     public GameObject poop;
 
     float poopTimer;
-    float POOP_CYCLE_MAX = 10f;
-    float POOP_CYCLE_MIN = 6f;
+    float POOP_CYCLE_MAX = 40f;
+    float POOP_CYCLE_MIN = 20f;
 
     float walkTimer;
     bool walking;
@@ -27,6 +27,8 @@ public class CowDogPig : SpookyObject
     Vector2 wanderTarget;
     float walkSpeed = 0.01f;
 
+    public GameObject PoofEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,7 @@ public class CowDogPig : SpookyObject
         walkTimer = Random.Range(WALK_CYCLE_MIN, WALK_CYCLE_MAX);
         poopTimer = Random.Range(POOP_CYCLE_MIN, POOP_CYCLE_MAX);
         walking = false;
+        Poof();
     }
 
     public void Init(float wanderRadius, float widthToHeightRatio, float pastureRotation, Vector2 pastureOrigin)
@@ -126,7 +129,7 @@ public class CowDogPig : SpookyObject
     public void GetEaten(GameObject eatEffect)
     {
         gettingEaten = true;
-        eatEffect.transform.position = transform.position + new Vector3(0f, 0.1f, 1f);
+        eatEffect.transform.position = transform.position + new Vector3(0f, 0.1f, 0.05f);
         animator.SetTrigger("Eaten");
     }
 
@@ -135,7 +138,14 @@ public class CowDogPig : SpookyObject
         eatTime -= Time.deltaTime;
         if (eatTime < 0f)
         {
+            Poof();
             Destroy(this.gameObject);
         }
+    }
+
+    void Poof()
+    {
+        GameObject poofInstance = Instantiate(PoofEffect);
+        poofInstance.transform.position = transform.position + new Vector3(0f, 0.2f, -1f);
     }
 }

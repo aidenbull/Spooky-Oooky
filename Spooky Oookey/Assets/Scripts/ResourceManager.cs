@@ -10,7 +10,7 @@ public class ResourceManager
     public static int CowDogPigCounter = 0;
 
     public static int MAX_WATER = 3;
-    public static int STARTING_MONEY = 1000;
+    public static int STARTING_MONEY = 0;
 
     public static void ResetGameValues()
     {

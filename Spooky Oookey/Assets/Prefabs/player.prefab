@@ -151,6 +151,8 @@ MonoBehaviour:
   poopCount: 0
   waterCount: 0
   DeathEffect: {fileID: 8313752022272063697}
+  PoofEffect: {fileID: 3897644263459564117, guid: 51af15cc306c794439fc69737b3c6a48, type: 3}
+  BoneValue: 50
 --- !u!95 &7222543045485675188
 Animator:
   serializedVersion: 3
@@ -199,7 +201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8623779702085877031, guid: 49655168b7b258741ae18ca3d2455e5b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8623779702085877031, guid: 49655168b7b258741ae18ca3d2455e5b, type: 3}
       propertyPath: m_LocalRotation.w

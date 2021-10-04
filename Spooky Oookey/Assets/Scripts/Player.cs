@@ -12,8 +12,6 @@ public class Player : MovableObject
 
     Animator animator;
 
-    int MAX_WATER = 3;
-
     static float interactionTimer = 0f;
     //Supposed to be equal to the length of the interact animation
     static float INTERACTION_TIME = 0.5f;

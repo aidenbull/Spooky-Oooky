@@ -7,11 +7,12 @@ public class ResourceManager
     public static int PoopCounter = 0;
     public static int WaterCounter = 0;
     public static int MoneyCounter = 0;
+    public static int CowDogPigCounter = 0;
 
     public static int MAX_WATER = 3;
     public static int STARTING_MONEY = 1000;
 
-    public static void ResetResources()
+    public static void ResetCurrencies()
     {
         PoopCounter = 0;
         WaterCounter = 0;
@@ -35,7 +36,11 @@ public class ResourceManager
 
     public static void RefillWater()
     {
-        WaterCounter = MAX_WATER;
+        if (WaterCounter < MAX_WATER)
+        {
+            WaterCounter = MAX_WATER;
+            EventManager.TriggerRefillWater();
+        }
     }
 
     public static bool DecrementWater()
@@ -58,6 +63,22 @@ public class ResourceManager
         if (MoneyCounter >= amount)
         {
             MoneyCounter -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public static void AddCowDogPig()
+    {
+        CowDogPigCounter += 1;
+    }
+
+    public static bool RemoveCowDogPig()
+    {
+        if (CowDogPigCounter > 0)
+        {
+            CowDogPigCounter -= 1;
+            EventManager.TriggerCowEaten();
             return true;
         }
         return false;

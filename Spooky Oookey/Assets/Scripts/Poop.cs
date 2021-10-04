@@ -32,7 +32,7 @@ public class Poop : SpookyObject
 
         Vector3 slideTarget3D = new Vector3(slideTarget.x, slideTarget.y, transform.position.z);
         Vector3 targetVector = slideTarget3D - transform.position;
-        transform.position += targetVector * 0.1f;
+        transform.position += targetVector * slideFrameIncrement;
     }
 
     Vector2 GenerateRandomPoopCoordinate()

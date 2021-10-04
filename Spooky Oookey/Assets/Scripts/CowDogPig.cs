@@ -113,4 +113,9 @@ public class CowDogPig : SpookyObject
             Instantiate(poop, transform.position, transform.rotation);
         }
     }
+
+    public void GetEaten()
+    {
+        Destroy(this.gameObject);
+    }
 }

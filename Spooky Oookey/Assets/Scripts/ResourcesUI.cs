@@ -24,7 +24,7 @@ public class ResourcesUI : MonoBehaviour
         waterText.text = "= 0/" + ResourceManager.MAX_WATER;
         moneyText.text = "= " + ResourceManager.MoneyCounter + "b";
 
-        ResourceManager.ResetResources();
+        ResourceManager.ResetCurrencies();
     }
 
     // Update is called once per frame

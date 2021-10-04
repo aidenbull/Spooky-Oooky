@@ -9,9 +9,11 @@ public class Pasture : MonoBehaviour
     public GameObject PurchaseSign;
 
     public float wanderRadius = 2f;
-    public float widthToHeightRatio = 2f;
+    public float widthToHeightRatio = 1f;
     public float pastureRotation = Mathf.PI / 2f;
     public Vector2 pastureOrigin;
+
+    public List<CowDogPig> cdpList = new List<CowDogPig>();
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,8 @@ public class Pasture : MonoBehaviour
 
         SpawnCow();
         SpawnCow();
+
+        EventManager.OnCowEaten += EatCow;
     }
 
     // Update is called once per frame
@@ -43,7 +47,11 @@ public class Pasture : MonoBehaviour
         }
         cdp.transform.SetParent(transform);
         cdp.transform.position = GenerateRandomPastureCoordinate(wanderRadius, widthToHeightRatio, pastureRotation, transform.position);
-        cdp.GetComponent<CowDogPig>().Init(wanderRadius, widthToHeightRatio, pastureRotation, transform.position);
+        CowDogPig cdpScript = cdp.GetComponent<CowDogPig>();
+        cdpScript.Init(wanderRadius, widthToHeightRatio, pastureRotation, transform.position);
+        cdpList.Add(cdpScript);
+
+        ResourceManager.AddCowDogPig();
     }
 
     public static Vector2 GenerateRandomPastureCoordinate(float wanderRadius, float widthToHeightRatio, float pastureRotation, Vector2 pastureOrigin)
@@ -56,5 +64,12 @@ public class Pasture : MonoBehaviour
         Vector2 RotatedCoordinate = Utilities.Rotate2D(new Vector2(x, y), pastureRotation);
 
         return pastureOrigin + RotatedCoordinate;
+    }
+
+    void EatCow()
+    {
+        CowDogPig toEat = cdpList[0];
+        cdpList.RemoveAt(0);
+        toEat.GetEaten();
     }
 }

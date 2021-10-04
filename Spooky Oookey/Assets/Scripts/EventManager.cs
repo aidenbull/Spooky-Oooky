@@ -35,4 +35,29 @@ public class EventManager : MonoBehaviour
     {
         if (OnNotEnoughMoney != null) OnNotEnoughMoney();
     }
+
+    //When water gets refilled
+    public delegate void RefillWaterEvent();
+    public static event RefillWaterEvent OnRefillWater;
+    public static void TriggerRefillWater()
+    {
+        if (OnRefillWater != null) OnRefillWater();
+    }
+
+    //This one may be backward but right now the resourceManager keeps track of number of cows and alerts the pasture when one is eaten
+    //When a cow gets eaten
+    public delegate void CowEatenEvent();
+    public static event CowEatenEvent OnCowEaten;
+    public static void TriggerCowEaten()
+    {
+        if (OnCowEaten != null) OnCowEaten();
+    }
+
+    //When a pumpkin grows up
+    public delegate void PumpkinGrowsEvent();
+    public static event PumpkinGrowsEvent OnPumpkinGrows;
+    public static void TriggerPumpkinGrows()
+    {
+        if (OnPumpkinGrows != null) OnPumpkinGrows();
+    }
 }

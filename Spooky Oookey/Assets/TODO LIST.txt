@@ -1,9 +1,5 @@
 
 -Add animation for pumpkin poop feeding
 -Add background
--Add menu
--Add game over screen
--Add pig poop sound (if time)
 -Test? (balance and bugs)
--Make Ludum Dare account
 -Begin testing builds no later than 12pm

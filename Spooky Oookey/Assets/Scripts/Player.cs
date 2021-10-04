@@ -156,7 +156,6 @@ public class Player : MovableObject
 
     void GameOver()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene("GameOver");
     }
 }

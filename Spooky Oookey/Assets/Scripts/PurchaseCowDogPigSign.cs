@@ -15,7 +15,7 @@ public class PurchaseCowDogPigSign : ClickableObject
     SpriteRenderer sprite;
 
     Color hoverColour = Color.white;
-    Color activeColour = Color.white * 0.9f;
+    Color activeColour = new Color(0.9f, 0.9f, 0.9f);
     Color inactiveColour = Color.grey;
 
     int cowPrice = 500;

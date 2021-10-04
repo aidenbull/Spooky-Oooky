@@ -29,11 +29,14 @@ public class CowDogPig : SpookyObject
 
     public GameObject PoofEffect;
 
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         walkTimer = Random.Range(WALK_CYCLE_MIN, WALK_CYCLE_MAX);
         poopTimer = Random.Range(POOP_CYCLE_MIN, POOP_CYCLE_MAX);
         walking = false;
@@ -121,6 +124,7 @@ public class CowDogPig : SpookyObject
         {
             poopTimer = Random.Range(POOP_CYCLE_MIN, POOP_CYCLE_MAX);
             Instantiate(poop, transform.position, transform.rotation);
+            audioSource.Play();
         }
     }
 

@@ -23,8 +23,6 @@ public class ResourcesUI : MonoBehaviour
         poopText.text = "= 0";
         waterText.text = "= 0/" + ResourceManager.MAX_WATER;
         moneyText.text = "= " + ResourceManager.MoneyCounter + "b";
-
-        ResourceManager.ResetCurrencies();
     }
 
     // Update is called once per frame

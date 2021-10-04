@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Pumpokin : SpookyObject
 {
@@ -24,10 +25,27 @@ public class Pumpokin : SpookyObject
     bool needsWater = false;
     bool needsFood = false;
 
+    public GameObject ChildTrigger;
+    ChildObjectTrigger childTriggerScript;
+    public bool playerInRange = false;
+
+    public GameObject FoodButton;
+    public GameObject WaterButton;
+    PumpkinButton foodButton;
+    PumpkinButton waterButton;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         currGrowth = GrowthState.Small;
+
+        childTriggerScript = ChildTrigger.GetComponent<ChildObjectTrigger>();
+        childTriggerScript.Init(PumpkinTriggerEnter, PumpkinTriggerExit);
+
+        foodButton = FoodButton.GetComponent<PumpkinButton>();
+        waterButton = WaterButton.GetComponent<PumpkinButton>();
+        foodButton.Init(TryFeedPumpkin);
+        waterButton.Init(TryWaterPumpkin);
     }
 
     new void Update()
@@ -75,6 +93,30 @@ public class Pumpokin : SpookyObject
         foodTimer = Random.Range(MIN_RESOURCE_RESET, MAX_RESOURCE_RESET);
     }
 
+    void TryWaterPumpkin()
+    {
+        if (ResourceManager.DecrementWater())
+        {
+            ResetWater();
+        }
+        else
+        {
+            EventManager.TriggerNotEnoughWater();
+        }
+    }
+
+    void TryFeedPumpkin()
+    {
+        if (ResourceManager.DecrementPoop())
+        {
+            ResetFood();
+        }
+        else
+        {
+            EventManager.TriggerNotEnoughPoop();
+        }
+    }
+
     void UpdateLargeState()
     {
         waterTimer -= Time.deltaTime;
@@ -96,6 +138,8 @@ public class Pumpokin : SpookyObject
         {
             animator.SetBool("Awake", false);
         }
+        SetFoodActive(needsFood);
+        SetWaterActive(needsWater);
     }
 
     void CheckAttack()
@@ -116,27 +160,49 @@ public class Pumpokin : SpookyObject
         else
         {
             //Game Over!
+            Scene scene = SceneManager.GetActiveScene(); 
+            SceneManager.LoadScene(scene.name);
         }
     }
 
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    base.Update();
-    //    sleepWakeTimer -= Time.deltaTime;
-    //    if(sleepWakeTimer <= 0f)
-    //    {
-    //        if (awake)
-    //        {
-    //            animator.SetTrigger("FallAsleep");
-    //            awake = false;
-    //        }
-    //        else
-    //        {
-    //            animator.SetTrigger("WakeUp");
-    //            awake = true;
-    //        }
-    //        sleepWakeTimer = CYCLE_TIME;
-    //    }
-    //}
+    void ShowButtons(bool visible)
+    {
+        if (visible)
+        {
+            foodButton.Show();
+            waterButton.Show();
+        }
+        else
+        {
+            foodButton.Hide();
+            waterButton.Hide();
+        }
+    }
+
+    void SetFoodActive(bool active)
+    {
+        foodButton.SetActive(active);
+    }
+
+    void SetWaterActive(bool active)
+    {
+        waterButton.SetActive(active);
+    }
+
+    private void PumpkinTriggerEnter(Collider2D collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            ShowButtons(true);
+        }
+    }
+
+    private void PumpkinTriggerExit(Collider2D collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            ShowButtons(false);
+        }
+    }
+
 }

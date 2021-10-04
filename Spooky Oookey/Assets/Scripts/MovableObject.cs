@@ -26,6 +26,7 @@ public class MovableObject : SpookyObject
     //    callback = childCallback;
     //}
 
+    //OOooooops this collision only accounts for one colliding body, so if the player is hugging a wall, they can walk through every other wall
     protected void Move(Vector2 direction, int collisionMask = 0, int triggerMask = 0, CollisionCallback callback = null)
     {
         if (collisionMask == 0) collisionMask = LayerMask.GetMask("wall");

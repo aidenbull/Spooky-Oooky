@@ -12,11 +12,12 @@ public class ResourceManager
     public static int MAX_WATER = 3;
     public static int STARTING_MONEY = 1000;
 
-    public static void ResetCurrencies()
+    public static void ResetGameValues()
     {
         PoopCounter = 0;
         WaterCounter = 0;
         MoneyCounter = STARTING_MONEY;
+        CowDogPigCounter = 0;
     }
 
     public static void IncrementPoop()

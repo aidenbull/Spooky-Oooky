@@ -6,9 +6,9 @@ public class PumpkinButton : ClickableObject
 {
     SpriteRenderer sprite;
 
-    float nonHoverAlpha = 0.7f;
-    float hoverAlpha = 0.9f;
-    float clickAlpha = 1f;
+    float nonHoverAlpha = 0.9f;
+    float hoverAlpha = 1f;
+    float clickAlpha = 0.9f;
 
     Color tempColor;
 

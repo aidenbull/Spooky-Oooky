@@ -481,6 +481,8 @@ MonoBehaviour:
   playerInRange: 0
   FoodButton: {fileID: 258479169309423618}
   WaterButton: {fileID: 1271561070522267507}
+  rainEffect: {fileID: 34864155758499787, guid: 3d42e0f1bd3bb0b46ade3379bb643b06, type: 3}
+  poopEffect: {fileID: 0}
 --- !u!1001 &1909781389615799506
 PrefabInstance:
   m_ObjectHideFlags: 0

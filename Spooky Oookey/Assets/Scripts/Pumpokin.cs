@@ -34,6 +34,9 @@ public class Pumpokin : SpookyObject
     PumpkinButton foodButton;
     PumpkinButton waterButton;
 
+    public GameObject rainEffect;
+    public GameObject poopEffect;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -98,6 +101,9 @@ public class Pumpokin : SpookyObject
         if (ResourceManager.DecrementWater())
         {
             ResetWater();
+            EventManager.TriggerInteract();
+            GameObject rain = Instantiate(rainEffect);
+            rain.transform.position = transform.position + new Vector3(0f, 0.2f, -1f);
         }
         else
         {
@@ -110,6 +116,7 @@ public class Pumpokin : SpookyObject
         if (ResourceManager.DecrementPoop())
         {
             ResetFood();
+            EventManager.TriggerInteract();
         }
         else
         {
@@ -119,10 +126,13 @@ public class Pumpokin : SpookyObject
 
     void UpdateLargeState()
     {
-        waterTimer -= Time.deltaTime;
-        foodTimer -= Time.deltaTime;
-        UpdateAwakeState();
-        CheckAttack();
+        if (!waitingOnAttackAnim)
+        {
+            waterTimer -= Time.deltaTime;
+            foodTimer -= Time.deltaTime;
+            UpdateAwakeState();
+            CheckAttack();
+        }
     }
 
     //Running into a bit of redundant name syndrome
@@ -150,8 +160,11 @@ public class Pumpokin : SpookyObject
         }
     }
 
+    bool waitingOnAttackAnim = false;
     void Attack()
     {
+        animator.SetTrigger("Attack");
+        waitingOnAttackAnim = true;
         if (ResourceManager.RemoveCowDogPig())
         {
             ResetFood();
@@ -163,6 +176,11 @@ public class Pumpokin : SpookyObject
             Scene scene = SceneManager.GetActiveScene(); 
             SceneManager.LoadScene(scene.name);
         }
+    }
+
+    void AttackAnimCallback()
+    {
+        waitingOnAttackAnim = false;
     }
 
     void ShowButtons(bool visible)

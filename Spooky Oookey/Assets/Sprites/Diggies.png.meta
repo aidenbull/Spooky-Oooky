@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: 3e211fdc5c2641743b0c4e4c303e82ea
+guid: 2e19dde905cfb0a48929791217e33394
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5866523671896097078
-    second: Cloudies_0
+      213: 975787385523675741
+    second: Diggies_0
   - first:
-      213: 2554263062775726804
-    second: Cloudies_1
+      213: -507341976494713806
+    second: Diggies_1
   - first:
-      213: 1463517701017422043
-    second: Cloudies_2
+      213: -427258171024291734
+    second: Diggies_2
   - first:
-      213: 1261273936047013006
-    second: Cloudies_3
+      213: 8869218761947226162
+    second: Diggies_3
   - first:
-      213: 6962218626988499249
-    second: Cloudies_4
+      213: -3680622823261698829
+    second: Diggies_4
+  - first:
+      213: 7292519574594548512
+    second: Diggies_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -106,106 +109,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cloudies_0
+      name: Diggies_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 48
+        width: 80
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ace76367dcbe59ea0800000000000000
-      internalID: -5866523671896097078
+      spriteID: d52227a0571ba8d00800000000000000
+      internalID: 975787385523675741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cloudies_1
+      name: Diggies_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 80
         y: 0
-        width: 48
-        height: 48
+        width: 80
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d206a7f8b0927320800000000000000
-      internalID: 2554263062775726804
+      spriteID: 234536f092f85f8f0800000000000000
+      internalID: -507341976494713806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cloudies_2
+      name: Diggies_2
       rect:
         serializedVersion: 2
-        x: 96
+        x: 160
         y: 0
-        width: 48
-        height: 48
+        width: 80
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd8c3a358957f4410800000000000000
-      internalID: 1463517701017422043
+      spriteID: a68c6b805f2121af0800000000000000
+      internalID: -427258171024291734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cloudies_3
+      name: Diggies_3
       rect:
         serializedVersion: 2
-        x: 144
+        x: 240
         y: 0
-        width: 48
-        height: 48
+        width: 80
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8c7a8a56f1f08110800000000000000
-      internalID: 1261273936047013006
+      spriteID: 230281d097bc51b70800000000000000
+      internalID: 8869218761947226162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cloudies_4
+      name: Diggies_4
       rect:
         serializedVersion: 2
-        x: 192
+        x: 320
         y: 0
-        width: 48
-        height: 48
+        width: 80
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 131e14e24f4ce9060800000000000000
-      internalID: 6962218626988499249
+      spriteID: 3f48a430b0dcbecc0800000000000000
+      internalID: -3680622823261698829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Diggies_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0237a496aeb343560800000000000000
+      internalID: 7292519574594548512
       vertices: []
       indices: 
       edges: []

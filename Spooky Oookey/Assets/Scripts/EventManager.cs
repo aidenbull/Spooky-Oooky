@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
+    public static void ResetEventSubscriptions()
+    {
+        OnInteract = null;
+        OnNotEnoughPoop = null;
+        OnNotEnoughWater = null;
+        OnNotEnoughMoney = null;
+        OnRefillWater = null;
+        OnCowEaten = null;
+        OnPumpkinGrows = null;
+    }
+
+
     //Player interaction
     public delegate void InteractEvent();
     public static event InteractEvent OnInteract;

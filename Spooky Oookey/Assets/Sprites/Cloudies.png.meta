@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: e0f4045ff541ee8469f4b1cda582e0d2
+guid: 3e211fdc5c2641743b0c4e4c303e82ea
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5599833264052593494
-    second: Spooker Magic_0
+      213: -5866523671896097078
+    second: Cloudies_0
   - first:
-      213: -7492205762245085434
-    second: Spooker Magic_1
+      213: 2554263062775726804
+    second: Cloudies_1
   - first:
-      213: -780643844618572150
-    second: Spooker Magic_2
+      213: 1463517701017422043
+    second: Cloudies_2
+  - first:
+      213: 1261273936047013006
+    second: Cloudies_3
+  - first:
+      213: 6962218626988499249
+    second: Cloudies_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Spooker Magic_0
+      name: Cloudies_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,20 +120,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aac9ab6c0556942b0800000000000000
-      internalID: -5599833264052593494
+      spriteID: ace76367dcbe59ea0800000000000000
+      internalID: -5866523671896097078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spooker Magic_1
+      name: Cloudies_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,20 +141,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6073f3dfd86560890800000000000000
-      internalID: -7492205762245085434
+      spriteID: 4d206a7f8b0927320800000000000000
+      internalID: 2554263062775726804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spooker Magic_2
+      name: Cloudies_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,8 +162,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8e2a613f889a25f0800000000000000
-      internalID: -780643844618572150
+      spriteID: bd8c3a358957f4410800000000000000
+      internalID: 1463517701017422043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cloudies_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8c7a8a56f1f08110800000000000000
+      internalID: 1261273936047013006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cloudies_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 131e14e24f4ce9060800000000000000
+      internalID: 6962218626988499249
       vertices: []
       indices: 
       edges: []
